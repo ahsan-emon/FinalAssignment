@@ -19,12 +19,23 @@ namespace Final_Assignment.Controllers
 
         public IHttpActionResult Get(int id)
         {
+            var Post = postRep.Get(id);
+            if(Post == null)
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
             return Ok(postRep.Get(id));
         }
-        public IHttpActionResult Post(Post posts)
+        public IHttpActionResult Post(Post post)
         {
-            postRep.Insert(posts);
-            return Ok();
+            postRep.Insert(post);
+            return Created("api/Posts/" + post.PostID, post);
+        }
+        public IHttpActionResult Put([FromUri]int id,[FromBody]Post post)
+        {
+            post.PostID = id;
+            postRep.Update(post);
+            return Ok(post);
         }
     }
 }
