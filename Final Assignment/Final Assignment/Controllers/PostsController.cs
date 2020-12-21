@@ -9,33 +9,42 @@ using System.Web.Http;
 
 namespace Final_Assignment.Controllers
 {
+    [RoutePrefix("api/post")]
     public class PostsController : ApiController
     {
-        PostRepository postRep = new PostRepository();
+        PostRepository postRepo = new PostRepository();
+        [Route("")]
         public IHttpActionResult Get()
         {
-            return Ok(postRep.GetAll());
+            return Ok(postRepo.GetAll());
         }
+        [Route("{id}", Name = "GetPostById")]
 
         public IHttpActionResult Get(int id)
         {
-            var Post = postRep.Get(id);
-            if(Post == null)
-            {
-                return StatusCode(HttpStatusCode.NoContent);
-            }
-            return Ok(postRep.Get(id));
+            return Ok(postRepo.Get(id));
         }
+        [Route("")]
         public IHttpActionResult Post(Post post)
         {
-            postRep.Insert(post);
-            return Created("api/Posts/" + post.PostID, post);
+            postRepo.Insert(post);
+            string uri = Url.Link("GetPostById", new { id = post.PostID });
+            return Created(uri, post);
         }
-        public IHttpActionResult Put([FromUri]int id,[FromBody]Post post)
+
+        [Route("{id}")]
+        public IHttpActionResult Put([FromUri] int id, [FromBody] Post post)
         {
             post.PostID = id;
-            postRep.Update(post);
+            postRepo.Update(post);
             return Ok(post);
+        }
+
+        [Route("{id}")]
+        public IHttpActionResult Delete(int id)
+        {
+            postRepo.Delete(id);
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }

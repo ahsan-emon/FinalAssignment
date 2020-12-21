@@ -9,17 +9,20 @@
 
 namespace Final_Assignment.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+    using System.Xml.Serialization;
+
     public partial class Comment
     {
         public int CommentID { get; set; }
         public string CommentDescription { get; set; }
         public int PostID { get; set; }
         public int UserID { get; set; }
-    
+        [JsonIgnore, XmlIgnore]
         public virtual Post Post { get; set; }
+        [JsonIgnore, XmlIgnore]
         public virtual User User { get; set; }
     }
 }

@@ -5,7 +5,7 @@
       <PropertyRef Name="CommentID" />
     </Key>
     <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CommentDescription" Type="nchar" MaxLength="1000" Nullable="false" />
+    <Property Name="CommentDescription" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PostID" Type="int" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
@@ -14,7 +14,7 @@
       <PropertyRef Name="PostID" />
     </Key>
     <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PostDescription" Type="nchar" MaxLength="1000" Nullable="false" />
+    <Property Name="PostDescription" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
@@ -22,8 +22,8 @@
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_Comments_Posts">
     <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
@@ -51,13 +51,13 @@
   </Association>
   <Association Name="FK_Posts_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+    <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="UserID" />
       </Principal>
       <Dependent Role="Posts">
-        <PropertyRef Name="PostID" />
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

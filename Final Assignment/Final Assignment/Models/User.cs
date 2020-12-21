@@ -9,15 +9,18 @@
 
 namespace Final_Assignment.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+    using System.Xml.Serialization;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
             this.Comments = new HashSet<Comment>();
+            this.Posts = new HashSet<Post>();
         }
     
         public int UserID { get; set; }
@@ -25,7 +28,10 @@ namespace Final_Assignment.Models
         public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore,XmlIgnore]
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual Post Post { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore, XmlIgnore]
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

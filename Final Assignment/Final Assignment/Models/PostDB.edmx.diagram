@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="90a21d15419744fabfbdfdb6cfee4ac4" Name="Diagram1">
+      <Diagram DiagramId="ac1dec0ac47f47c28ff36e6473f0e986" Name="Diagram1">
         <EntityTypeShape EntityType="PostDBModel.Comment" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PostDBModel.Post" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PostDBModel.User" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />

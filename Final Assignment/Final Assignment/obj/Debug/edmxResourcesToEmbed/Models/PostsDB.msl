@@ -1,19 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="PostsDBModelStoreContainer" CdmEntityContainer="PostsDB">
+  <EntityContainerMapping StorageEntityContainer="PostDBModelStoreContainer" CdmEntityContainer="PostDBe">
     <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="PostsDBModel.Comment">
+      <EntityTypeMapping TypeName="PostDBModel.Comment">
         <MappingFragment StoreEntitySet="Comments">
-          <ScalarProperty Name="DescriptionID" ColumnName="DescriptionID" />
-          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+          <ScalarProperty Name="CommentDescription" ColumnName="CommentDescription" />
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Postsses">
-      <EntityTypeMapping TypeName="PostsDBModel.Postss">
-        <MappingFragment StoreEntitySet="Postss">
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="PostDBModel.Post">
+        <MappingFragment StoreEntitySet="Posts">
           <ScalarProperty Name="PostID" ColumnName="PostID" />
-          <ScalarProperty Name="PostName" ColumnName="PostName" />
+          <ScalarProperty Name="PostDescription" ColumnName="PostDescription" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PostDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
