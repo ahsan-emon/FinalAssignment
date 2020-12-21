@@ -22,6 +22,11 @@ namespace Final_Assignment.Controllers
 
         public IHttpActionResult Get(int id)
         {
+            var post = postRepo.Get(id);
+            if(post == null)
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
             return Ok(postRepo.Get(id));
         }
         [Route("")]
@@ -34,11 +39,11 @@ namespace Final_Assignment.Controllers
 
         [Route("{id}")]
         public IHttpActionResult Put([FromUri] int id, [FromBody] Post post)
-        {
+        { 
             post.PostID = id;
             postRepo.Update(post);
             return Ok(post);
-        }
+        } 
 
         [Route("{id}")]
         public IHttpActionResult Delete(int id)
@@ -46,5 +51,23 @@ namespace Final_Assignment.Controllers
             postRepo.Delete(id);
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+        DescribeRepository CmntRepo = new DescribeRepository();
+        [Route("api/post/{id}/Comment")]
+        public IHttpActionResult GetComment(int id)
+        {
+            List<Comment> comments = CmntRepo.GetAll().Where<Comment>(x => x.PostID == id).ToList();
+            return Ok(comments);
+        }
+        /*[Route("api/post/{id}/Comment/{cid}")]
+        public IHttpActionResult GetCommentById(int id)
+        {
+            var comment = CmntRepo.Get(id);
+            if (comment == null)
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            return Ok(CmntRepo.Get(id));
+        }*/
     }
 }
