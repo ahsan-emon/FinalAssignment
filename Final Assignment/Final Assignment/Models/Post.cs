@@ -27,9 +27,7 @@ namespace Final_Assignment.Models
         public int UserID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore, XmlIgnore]
         public virtual ICollection<Comment> Comments { get; set; }
-        [JsonIgnore, XmlIgnore]
         public virtual User User { get; set; }
     }
 }

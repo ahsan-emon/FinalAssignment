@@ -53,21 +53,56 @@ namespace Final_Assignment.Controllers
         }
 
         DescribeRepository CmntRepo = new DescribeRepository();
-        [Route("api/post/{id}/Comment")]
+        [Route("{id}/Comments")]
         public IHttpActionResult GetComment(int id)
         {
             List<Comment> comments = CmntRepo.GetAll().Where<Comment>(x => x.PostID == id).ToList();
             return Ok(comments);
         }
-        /*[Route("api/post/{id}/Comment/{cid}")]
-        public IHttpActionResult GetCommentById(int id)
+
+        [Route("{id}/comments/{cid}", Name = "GetCommentById")]
+        public IHttpActionResult GetComment(int id, int cid)
         {
-            var comment = CmntRepo.Get(id);
+            Comment com = CmntRepo.GetAll().Where<Comment>(x => x.CommentID == cid && x.PostID == id).FirstOrDefault();
+            if (com == null)
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            else
+            {
+                return Ok(com);
+            }
+        }
+
+        [Route("{id}/comments")]
+        public IHttpActionResult PostComment(int id, Comment com)
+        {
+            com.PostID = id;
+            CmntRepo.Insert(com);
+            string uri = Url.Link("GetCommentById", new { id = com.PostID, cid = com.CommentID });
+            return Created(uri, com);
+        }
+
+        [Route("{id}/comments/{cid}")]
+        public IHttpActionResult Put([FromUri] int id, [FromUri] int cid, [FromBody] Comment com)
+        {
+            com.CommentID = cid;
+            com.PostID = id;
+            CmntRepo.Update(com);
+            return Ok(com);
+        }
+
+        [Route("{id}/comments/{cid}")]
+        public IHttpActionResult DeleteComment(int id, int cid)
+        {
+            Comment comment = CmntRepo.GetAll().Where<Comment>(x => x.CommentID == cid && x.PostID == id).FirstOrDefault();
             if (comment == null)
             {
                 return StatusCode(HttpStatusCode.NoContent);
             }
-            return Ok(CmntRepo.Get(id));
-        }*/
+            CmntRepo.Delete(cid);
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+     
     }
 }

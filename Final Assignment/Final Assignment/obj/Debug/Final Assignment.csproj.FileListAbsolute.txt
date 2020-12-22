@@ -94,3 +94,6 @@ C:\Users\ahsan\source\repos\FinalAssignment\Final Assignment\Final Assignment\ob
 C:\Users\ahsan\source\repos\FinalAssignment\Final Assignment\Final Assignment\obj\Debug\Final Assignment.csproj.CopyComplete
 C:\Users\ahsan\source\repos\FinalAssignment\Final Assignment\Final Assignment\obj\Debug\Final Assignment.dll
 C:\Users\ahsan\source\repos\FinalAssignment\Final Assignment\Final Assignment\obj\Debug\Final Assignment.pdb
+C:\Users\ahsan\source\repos\FinalAssignment\Final Assignment\Final Assignment\bin\System.Web.Cors.dll
+C:\Users\ahsan\source\repos\FinalAssignment\Final Assignment\Final Assignment\bin\System.Web.Http.Cors.dll
+C:\Users\ahsan\source\repos\FinalAssignment\Final Assignment\Final Assignment\bin\System.Web.Http.Cors.xml
