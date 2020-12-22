@@ -48,7 +48,7 @@ namespace Final_Assignment.Controllers
         [Route("{id}")]
         public IHttpActionResult Delete(int id)
         {
-            postRepo.Delete(id);
+            postRepo.DeletePost(id);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
